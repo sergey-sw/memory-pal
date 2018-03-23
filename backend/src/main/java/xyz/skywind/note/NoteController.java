@@ -1,5 +1,6 @@
 package xyz.skywind.note;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ public class NoteController {
         this.noteRepository = noteRepository;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/api/notes")
     public List<Note> getNotes() {
         return noteRepository.findAll();

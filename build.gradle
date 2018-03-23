@@ -36,7 +36,3 @@ project(':backend') {
         testCompile('org.springframework.boot:spring-boot-starter-test:2.0.0.RELEASE')
     }
 }
-
-project(':frontend') {
-
-}
