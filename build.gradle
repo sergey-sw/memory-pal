@@ -1,0 +1,21 @@
+group 'xyz.skywind'
+version '1.0-SNAPSHOT'
+
+project(':backend') {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+    }
+}
+
+project(':frontend') {
+
+}

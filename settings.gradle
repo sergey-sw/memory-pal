@@ -1,0 +1,6 @@
+include(':backend', ':frontend')
+
+rootProject.name = 'memory-pal'
+
+project(':backend').projectDir = new File(settingsDir, 'backend')
+project(':frontend').projectDir = new File(settingsDir, 'frontend')
