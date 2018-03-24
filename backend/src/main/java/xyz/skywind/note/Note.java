@@ -1,14 +1,13 @@
 package xyz.skywind.note;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Author: Sergey Saiyan sergey.sova42@gmail.com
  * Created at 24/03/2018.
  */
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 public class Note {
@@ -17,9 +16,9 @@ public class Note {
     @GeneratedValue
     private Long id;
 
-    private Long userId;
+    private Long userId = 1L;
 
-    private long lastUpdateTs;
+    private long lastUpdateTs = System.currentTimeMillis();
 
     private String text;
 

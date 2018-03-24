@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-class NoteList extends React.Component {
+export default class NoteList extends React.Component {
 
   state = {
      notes: [],
@@ -34,5 +34,3 @@ class NoteList extends React.Component {
       );
     }
 }
-
-export default NoteList;

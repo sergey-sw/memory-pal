@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './App.css';
-import NodeList from './note/NoteList';
+import NodeList from './components/note/NoteList';
+import NodeAdd from './components/note/NoteAdd';
 
 class App extends React.Component {
 
@@ -9,6 +10,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <NodeList />
+
       </div>
     );
   }
