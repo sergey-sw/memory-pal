@@ -12,7 +12,7 @@ export default class NoteAdd extends React.Component {
         saveNote(this.state);
     }
 
-    updateInputValue: function(evt) {
+    updateInputValue = (evt) => {
         this.setState({
           text: evt.target.value
         });
@@ -27,8 +27,8 @@ export default class NoteAdd extends React.Component {
                     value={this.state.text}
                     onChange={evt => this.updateInputValue(evt)}
               />
-              <button onClick={this.onNoteAdd} caption="Add">
-          <div>
+              <button onClick={this.onNoteAdd}>Add</button>
+          </div>
         );
     }
 }

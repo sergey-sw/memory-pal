@@ -7,5 +7,3 @@ export function saveNote(payload) {
     payload
   });
 }
-
-export default Api;
