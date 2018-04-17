@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Note from './Note';
 
 export default class NoteList extends React.Component {
 
@@ -26,9 +27,7 @@ export default class NoteList extends React.Component {
           <div>
             <h2>Note list</h2>
             {notes.map(note =>
-              <div key={note.id}>
-                {note.text}
-              </div>
+              <Note key={note.id} text={note.text} />
             )}
           </div>
       );

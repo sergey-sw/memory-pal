@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { saveNote } from '../../api/Api';
-
 export default class NoteAdd extends React.Component {
 
     state = {
@@ -9,7 +7,6 @@ export default class NoteAdd extends React.Component {
     }
 
     onNoteAdd = () => {
-        saveNote(this.state);
     }
 
     updateInputValue = (evt) => {
