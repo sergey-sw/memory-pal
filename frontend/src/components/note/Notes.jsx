@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Note from './Note';
+import NoteAdd from './NoteAdd';
 
-export default class NoteList extends React.Component {
+export default class Notes extends React.Component {
 
   state = {
      notes: [],
@@ -10,10 +11,13 @@ export default class NoteList extends React.Component {
 
   componentDidMount() {
      this.setState({notes: [], isLoading: true});
+     this.updateNotes();
+  }
 
-     fetch('http://localhost:8080/api/notes')
-          .then(response => response.json())
-          .then(data => this.setState({notes: data, isLoading: false}));
+  updateNotes = () => {
+       fetch('http://localhost:8080/api/notes')
+              .then(response => response.json())
+              .then(data => this.setState({notes: data, isLoading: false}));
   }
 
   render() {
@@ -29,6 +33,7 @@ export default class NoteList extends React.Component {
             {notes.map(note =>
               <Note key={note.id} text={note.text} />
             )}
+            <NoteAdd onAfterSubmit={this.updateNotes}/>
           </div>
       );
     }
