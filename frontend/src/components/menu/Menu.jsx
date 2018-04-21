@@ -4,7 +4,7 @@ import Notes from './../note/Notes';
 import NoteAdd from './../note/NoteAdd';
 
 
-export default class Note extends React.Component {
+export default class Menu extends React.Component {
 
     render() {
         return (
