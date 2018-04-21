@@ -1,7 +1,10 @@
 import * as React from 'react';
 import './notes.css';
+import * as Showdown from "showdown";
 
 export default class Note extends React.Component {
+
+    converter = new Showdown.Converter();
 
     constructor(props) {
         super(props);
@@ -12,10 +15,13 @@ export default class Note extends React.Component {
     }
 
     render() {
+        const md = this.state.text;
+        const html = this.converter.makeHtml(md);
+
         return (
             <div className="Note">
                 <div className="NoteTitle">{this.state.title}</div>
-                <div className="NoteText">{this.state.text}</div>
+                <span dangerouslySetInnerHTML={{__html: html}} />
             </div>
         );
     }

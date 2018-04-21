@@ -31,7 +31,7 @@ project(':backend') {
         compile('org.springframework.boot:spring-boot-starter-data-jpa:2.0.0.RELEASE')
         compile('org.springframework.boot:spring-boot-starter-data-rest:2.0.0.RELEASE')
 
-        //compile('commons-io:commons-io:2.6')
+        compile('commons-io:commons-io:2.6')
 
         runtime('com.h2database:h2')
 
