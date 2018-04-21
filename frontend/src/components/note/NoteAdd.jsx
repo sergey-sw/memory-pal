@@ -42,7 +42,10 @@ export default class NoteAdd extends React.Component {
     }
 
     onNoteAdd = () => {
-        axios.post('http://localhost:8080/api/notes/create', { "text" : this.state.text } )
+        const md = this.state.mdeState.markdown;
+        const title = 'new title';
+
+        axios.post('http://localhost:8080/api/notes/create', { text : md, title : title } )
               .then(res => {
                 this.setState({
                     text : DEFAULT_TEXT
