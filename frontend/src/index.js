@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import '../node_modules/megadraft/dist/css/megadraft.css';
+import "react-mde/lib/styles/css/react-mde-all.css";
+
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 

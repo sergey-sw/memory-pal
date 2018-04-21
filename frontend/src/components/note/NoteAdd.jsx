@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
-import {MegadraftEditor, editorStateFromRaw} from "megadraft";
-
+import ReactMde from "react-mde";
+import * as Showdown from "showdown";
 
 const DEFAULT_TEXT = 'Enter new note...';
 
@@ -9,19 +9,30 @@ export default class NoteAdd extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {editorState: editorStateFromRaw(null)};
+
+        this.state = {
+          mdeState: null
+        };
+
+        this.converter = new Showdown.Converter({
+          tables: true,
+          simplifiedAutoLink: true
+        });
     }
 
-    onChange = (editorState) => {
-        this.setState({editorState});
-    }
+    handleValueChange = (mdeState) => {
+        this.setState({ mdeState });
+    };
 
     render() {
         return (
             <div className="NoteAdd">
-                <MegadraftEditor
-                        editorState={this.state.editorState}
-                        onChange={this.onChange}/>
+                <ReactMde
+                    onChange={this.handleValueChange}
+                    editorState={this.state.mdeState}
+                    generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+                />
+
 
                 <button onClick={this.onNoteAdd} className="NoteAddButton">Add</button>
             </div>
