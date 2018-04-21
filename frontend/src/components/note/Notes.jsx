@@ -2,6 +2,8 @@ import * as React from 'react';
 import Note from './Note';
 import NoteAdd from './NoteAdd';
 
+import './notes.css';
+
 export default class Notes extends React.Component {
 
   state = {
@@ -28,10 +30,10 @@ export default class Notes extends React.Component {
       }
 
       return (
-          <div>
-            <h2>Note list</h2>
+          <div className="Notes">
+            <h2>My notes</h2>
             {notes.map(note =>
-              <Note key={note.id} text={note.text} />
+              <Note key={note.id} text={note.text} title={note.title}/>
             )}
             <NoteAdd onAfterSubmit={this.updateNotes} />
           </div>

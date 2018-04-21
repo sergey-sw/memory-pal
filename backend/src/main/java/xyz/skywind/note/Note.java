@@ -1,5 +1,6 @@
 package xyz.skywind.note;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +21,9 @@ public class Note {
 
     private long lastUpdateTs = System.currentTimeMillis();
 
+    private String title;
+
+    @Column(length = 65535)
     private String text;
 
     public Long getId() {
@@ -54,13 +58,21 @@ public class Note {
         this.text = text;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @Override
     public String toString() {
         return "Note{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", lastUpdateTs=" + lastUpdateTs +
-                ", text='" + text + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,16 @@
+.Note {
+    margin : 10px 0px 10px 0px;
+}
+
+.NoteTitle {
+    font-weight: bold;
+}
+
+.Notes {
+    margin: 10px;
+    padding: 10px 0px 100px 0px;
+}
+
+.NoteAdd {
+    padding: 50px 0px 0px 0px;
+}

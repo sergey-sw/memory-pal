@@ -2,6 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import ReactMde from "react-mde";
 import * as Showdown from "showdown";
+import './notes.css';
 
 const DEFAULT_TEXT = 'Enter new note...';
 
@@ -27,12 +28,13 @@ export default class NoteAdd extends React.Component {
     render() {
         return (
             <div className="NoteAdd">
+                <h3>Create new note</h3>
+
                 <ReactMde
                     onChange={this.handleValueChange}
                     editorState={this.state.mdeState}
                     generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
                 />
-
 
                 <button onClick={this.onNoteAdd} className="NoteAddButton">Add</button>
             </div>
