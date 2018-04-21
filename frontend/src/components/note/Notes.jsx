@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Note from './Note';
-import NoteAdd from './NoteAdd';
-
 import './notes.css';
 
 export default class Notes extends React.Component {
@@ -35,7 +33,6 @@ export default class Notes extends React.Component {
             {notes.map(note =>
               <Note key={note.id} text={note.text} title={note.title}/>
             )}
-            <NoteAdd onAfterSubmit={this.updateNotes} />
           </div>
       );
     }

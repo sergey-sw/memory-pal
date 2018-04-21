@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import Notes from './components/note/Notes';
+import Menu from './components/menu/Menu';
 
 class App extends React.Component {
 
@@ -8,7 +8,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Notes />
+        <Menu />
       </div>
     );
   }
