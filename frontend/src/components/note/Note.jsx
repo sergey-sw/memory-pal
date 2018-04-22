@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './notes.css';
 import * as Showdown from "showdown";
+import Tags from '../tag/Tags';
 
 export default class Note extends React.Component {
 
@@ -10,7 +11,8 @@ export default class Note extends React.Component {
         super(props);
         this.state = {
             text : props.text,
-            title : props.title
+            title : props.title,
+            tags: props.tags
         }
     }
 
@@ -21,6 +23,7 @@ export default class Note extends React.Component {
         return (
             <div className="Note">
                 <div className="NoteTitle">{this.state.title}</div>
+                <Tags tags={this.state.tags} />
                 <span dangerouslySetInnerHTML={{__html: html}} />
             </div>
         );

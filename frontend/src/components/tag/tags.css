@@ -1,0 +1,13 @@
+.Tags {
+    padding: 5px 0px 0px 0px;
+    margin: 3px;
+}
+
+.Tag {
+    background-color: #DCDCDC;
+    font-size:80%;
+}
+
+.Tag + .Tag {
+    margin-left: 5px;
+}
