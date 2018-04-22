@@ -1,9 +1,10 @@
 package xyz.skywind.note;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import xyz.skywind.tag.Tag;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author: Sergey Saiyan sergey.sova42@gmail.com
@@ -11,6 +12,7 @@ import javax.persistence.Id;
  */
 
 @Entity
+@Table(name = "notes")
 public class Note {
 
     @Id
@@ -23,8 +25,11 @@ public class Note {
 
     private String title;
 
-    @Column(length = 65535)
+    @Lob
     private String text;
+
+    @OneToMany(mappedBy="note", cascade = CascadeType.ALL)
+    private List<Tag> tags = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -64,6 +69,14 @@ public class Note {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override

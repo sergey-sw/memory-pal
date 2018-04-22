@@ -3,6 +3,7 @@ package xyz.skywind.note;
 import org.apache.commons.io.IOUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import xyz.skywind.tag.Tag;
 
 import java.util.Arrays;
 
@@ -25,12 +26,27 @@ public class NoteCLIRunner implements CommandLineRunner {
         n1.setTitle("Note 1");
         n1.setText(IOUtils.toString(getClass().getResourceAsStream("/note-samples/1.md")));
 
+        Tag t1 = new Tag();
+        t1.setName("Loren");
+        t1.setNote(n1);
+        n1.getTags().add(t1);
+
+        Tag t2 = new Tag();
+        t2.setName("Ipsum");
+        t2.setNote(n1);
+        n1.getTags().add(t2);
+
         Note n2 = new Note();
         n2.setTitle("Note 2");
         n2.setText(IOUtils.toString(getClass().getResourceAsStream("/note-samples/2.md")));
 
-        noteRepository.save(n1);
-        noteRepository.save(n2);
+        Tag t3 = new Tag();
+        t3.setName("Existential");
+        t3.setNote(n2);
+        n2.getTags().add(t3);
+
+
+        noteRepository.saveAll(Arrays.asList(n1, n2));
 
         noteRepository.findAll().forEach(System.out::println);
     }

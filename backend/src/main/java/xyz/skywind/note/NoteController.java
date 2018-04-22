@@ -3,8 +3,10 @@ package xyz.skywind.note;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import xyz.skywind.dto.NoteDTO;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Author: Sergey Saiyan sergey.sova42@gmail.com
@@ -23,8 +25,8 @@ public class NoteController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/api/notes")
-    public List<Note> getNotes() {
-        return noteRepository.findAll();
+    public List<NoteDTO> getNotes() {
+        return noteRepository.findAll().stream().map(NoteDTO::new).collect(Collectors.toList());
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
