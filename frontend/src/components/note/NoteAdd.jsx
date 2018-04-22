@@ -4,7 +4,7 @@ import ReactMde from "react-mde";
 import * as Showdown from "showdown";
 import './notes.css';
 
-const DEFAULT_TEXT = 'Enter new note...';
+const DEFAULT_TITLE = 'My new note';
 
 export default class NoteAdd extends React.Component {
 
@@ -12,7 +12,8 @@ export default class NoteAdd extends React.Component {
         super(props);
 
         this.state = {
-          mdeState: null
+          mdeState: null,
+          title : DEFAULT_TITLE
         };
 
         this.converter = new Showdown.Converter({
@@ -25,10 +26,20 @@ export default class NoteAdd extends React.Component {
         this.setState({ mdeState });
     };
 
+    updateTitleValue = (evt) => {
+        this.setState({title: evt.target.value});
+    };
+
     render() {
         return (
             <div className="NoteAdd">
-                <h3>Create new note</h3>
+
+                <input className="NoteAddTitle"
+                     id="note-add-input"
+                     type="text"
+                     value={this.state.title}
+                     onChange={evt => this.updateTitleValue(evt)}
+                />
 
                 <ReactMde
                     onChange={this.handleValueChange}
@@ -43,13 +54,10 @@ export default class NoteAdd extends React.Component {
 
     onNoteAdd = () => {
         const md = this.state.mdeState.markdown;
-        const title = 'new title';
+        const title = this.state.title;
 
         axios.post('http://localhost:8080/api/notes/create', { text : md, title : title } )
               .then(res => {
-                this.setState({
-                    text : DEFAULT_TEXT
-                });
                 this.props.onAfterSubmit();
               })
     }
