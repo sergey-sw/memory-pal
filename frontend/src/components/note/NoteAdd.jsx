@@ -2,6 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import ReactMde from "react-mde";
 import * as Showdown from "showdown";
+import TagEditor from '../tag/TagEditor';
 import './notes.css';
 
 const DEFAULT_TITLE = 'My new note';
@@ -13,7 +14,8 @@ export default class NoteAdd extends React.Component {
 
         this.state = {
           mdeState: null,
-          title : DEFAULT_TITLE
+          title : DEFAULT_TITLE,
+          tags: []
         };
 
         this.converter = new Showdown.Converter({
@@ -47,16 +49,34 @@ export default class NoteAdd extends React.Component {
                     generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
                 />
 
-                <button onClick={this.onNoteAdd} className="NoteAddButton">Add</button>
+                <TagEditor tags={this.state.tags} onTagAdd={this.onTagAdd}/>
+
+                <button onClick={this.onNoteAdd} className="NoteAddButton">Publish</button>
             </div>
         );
     }
 
-    onNoteAdd = () => {
-        const md = this.state.mdeState.markdown;
-        const title = this.state.title;
+    onTagAdd = (tag) => {
+        console.log('tag is ' + tag);
+        this.setState(function(state, props) {
+            return {
+               tags: [...state.tags, tag]
+            }
+        });
+    }
 
-        axios.post('http://localhost:8080/api/notes/create', { text : md, title : title } )
+    onNoteAdd = () => {
+        const mdeState = this.state.mdeState;
+        if (mdeState === null) {
+            this.props.onAfterSubmit();
+            return;
+        }
+
+        const md = mdeState.markdown;
+        const title = this.state.title;
+        const tags = this.state.tags;
+
+        axios.post('http://localhost:8080/api/notes/create', { text : md, title : title, tags : tags } )
               .then(res => {
                 this.props.onAfterSubmit();
               })

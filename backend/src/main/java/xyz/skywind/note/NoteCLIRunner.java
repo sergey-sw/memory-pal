@@ -24,6 +24,7 @@ public class NoteCLIRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Note n1 = new Note();
         n1.setTitle("Note 1");
+        n1.setId(1L);
         n1.setText(IOUtils.toString(getClass().getResourceAsStream("/note-samples/1.md")));
 
         Tag t1 = new Tag();
@@ -37,6 +38,7 @@ public class NoteCLIRunner implements CommandLineRunner {
         n1.getTags().add(t2);
 
         Note n2 = new Note();
+        n2.setId(2L);
         n2.setTitle("Note 2");
         n2.setText(IOUtils.toString(getClass().getResourceAsStream("/note-samples/2.md")));
 
