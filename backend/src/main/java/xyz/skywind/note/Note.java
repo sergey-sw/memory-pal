@@ -19,8 +19,6 @@ public class Note {
     @GeneratedValue
     private Long id;
 
-    private Long userId = 1L;
-
     private long lastUpdateTs = System.currentTimeMillis();
 
     private String title;
@@ -28,7 +26,18 @@ public class Note {
     @Lob
     private String text;
 
-    @OneToMany(mappedBy="note", cascade = CascadeType.ALL)
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable(
+            name = "note_tags",
+            joinColumns = {@JoinColumn(name = "note_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
+    )
     private List<Tag> tags = new ArrayList<>();
 
     public Long getId() {
@@ -37,14 +46,6 @@ public class Note {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public long getLastUpdateTs() {
@@ -83,7 +84,6 @@ public class Note {
     public String toString() {
         return "Note{" +
                 "id=" + id +
-                ", userId=" + userId +
                 ", lastUpdateTs=" + lastUpdateTs +
                 ", title='" + title + '\'' +
                 '}';

@@ -57,7 +57,6 @@ export default class NoteAdd extends React.Component {
     }
 
     onTagAdd = (tag) => {
-        console.log('tag is ' + tag);
         this.setState(function(state, props) {
             return {
                tags: [...state.tags, tag]

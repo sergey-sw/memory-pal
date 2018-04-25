@@ -29,12 +29,12 @@ public class NoteCLIRunner implements CommandLineRunner {
 
         Tag t1 = new Tag();
         t1.setName("Loren");
-        t1.setNote(n1);
+        t1.getNotes().add(n1);
         n1.getTags().add(t1);
 
         Tag t2 = new Tag();
         t2.setName("Ipsum");
-        t2.setNote(n1);
+        t2.getNotes().add(n1);
         n1.getTags().add(t2);
 
         Note n2 = new Note();
@@ -44,7 +44,7 @@ public class NoteCLIRunner implements CommandLineRunner {
 
         Tag t3 = new Tag();
         t3.setName("Existential");
-        t3.setNote(n2);
+        t3.getNotes().add(n2);
         n2.getTags().add(t3);
 
 

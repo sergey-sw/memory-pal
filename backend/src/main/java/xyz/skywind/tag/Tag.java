@@ -3,6 +3,8 @@ package xyz.skywind.tag;
 import xyz.skywind.note.Note;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Author: Sergey Saiyan sergey.sova42@gmail.com
@@ -20,9 +22,14 @@ public class Tag {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "note_id", nullable = false)
-    private Note note;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "tags"
+    )
+    private Set<Note> notes = new HashSet<>();
 
     public Tag() {
     }
@@ -51,11 +58,11 @@ public class Tag {
         this.name = name;
     }
 
-    public Note getNote() {
-        return note;
+    public Set<Note> getNotes() {
+        return notes;
     }
 
-    public void setNote(Note note) {
-        this.note = note;
+    public void setNotes(Set<Note> notes) {
+        this.notes = notes;
     }
 }

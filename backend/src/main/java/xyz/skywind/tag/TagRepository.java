@@ -9,4 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  */
 @RepositoryRestResource
 public interface TagRepository extends JpaRepository<Tag, Long> {
+
+    Tag findByName(String name);
 }
