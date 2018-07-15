@@ -1,5 +1,6 @@
 package xyz.skywind.note;
 
+import xyz.skywind.category.Category;
 import xyz.skywind.tag.Tag;
 
 import javax.persistence.*;
@@ -39,6 +40,10 @@ public class Note {
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )
     private List<Tag> tags = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Long getId() {
         return id;
@@ -80,12 +85,21 @@ public class Note {
         this.tags = tags;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Note{" +
                 "id=" + id +
                 ", lastUpdateTs=" + lastUpdateTs +
                 ", title='" + title + '\'' +
+                ", category=" + category +
                 '}';
     }
 }
