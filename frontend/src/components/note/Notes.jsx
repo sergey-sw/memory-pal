@@ -31,7 +31,12 @@ export default class Notes extends React.Component {
           <div className="Notes">
             <h2>My notes</h2>
             {notes.map(note =>
-              <Note key={note.id} text={note.text} title={note.title} tags={note.tags}/>
+              <Note key={note.id}
+                    text={note.text}
+                    title={note.title}
+                    tags={note.tags}
+                    category={note.category}
+              />
             )}
           </div>
       );

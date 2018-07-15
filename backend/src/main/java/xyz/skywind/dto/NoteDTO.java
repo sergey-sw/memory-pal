@@ -19,6 +19,8 @@ public class NoteDTO {
 
     private String text;
 
+    private String category;
+
     private List<String> tags = Collections.emptyList();
 
     public NoteDTO() {
@@ -29,6 +31,7 @@ public class NoteDTO {
         this.title = note.getTitle();
         this.text = note.getText();
         this.tags = note.getTags().stream().map(Tag::getName).collect(Collectors.toList());
+        this.category = note.getCategory().getName();
     }
 
     public long getId() {
@@ -63,11 +66,20 @@ public class NoteDTO {
         this.tags = tags;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "NoteDTO{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
                 ", tags=" + tags +
                 '}';
     }

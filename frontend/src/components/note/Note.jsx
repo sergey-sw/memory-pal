@@ -12,7 +12,8 @@ export default class Note extends React.Component {
         this.state = {
             text : props.text,
             title : props.title,
-            tags: props.tags
+            tags: props.tags,
+            category: props.category
         }
     }
 
@@ -24,6 +25,7 @@ export default class Note extends React.Component {
             <div className="Note">
                 <div className="NoteTitle">{this.state.title}</div>
                 <Tags tags={this.state.tags} />
+                <div> Category: {this.state.category}</div>
                 <span dangerouslySetInnerHTML={{__html: html}} />
             </div>
         );
