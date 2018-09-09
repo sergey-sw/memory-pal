@@ -75,9 +75,15 @@ export default class NoteAdd extends React.Component {
         const title = this.state.title;
         const tags = this.state.tags;
 
+        const editor = this;
+
         axios.post('http://localhost:8080/api/notes/create', { text : md, title : title, tags : tags } )
               .then(res => {
                 this.props.onAfterSubmit();
+              })
+              .catch(function (error) {
+                  window.alert('Backend is not working');
+                  editor.props.onAfterSubmit();
               })
     }
 }
