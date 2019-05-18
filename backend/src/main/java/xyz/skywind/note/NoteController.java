@@ -3,6 +3,7 @@ package xyz.skywind.note;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import xyz.skywind.AppController;
 import xyz.skywind.dto.NoteDTO;
 import xyz.skywind.tag.Tag;
 import xyz.skywind.tag.TagRepository;
@@ -27,13 +28,13 @@ public class NoteController {
         this.tagRepository = tagRepository;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping("/api/notes")
     public List<NoteDTO> getNotes() {
         return noteRepository.findAll().stream().map(NoteDTO::new).peek(System.out::println).collect(Collectors.toList());
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @PostMapping(value = "/api/notes/create", headers = "content-type=application/json")
     public void addNote(@RequestBody NoteDTO noteDTO) {
         LOG.info("Received note " + noteDTO);

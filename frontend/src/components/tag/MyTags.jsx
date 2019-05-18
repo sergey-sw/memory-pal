@@ -2,6 +2,8 @@ import * as React from 'react';
 import './tags.css';
 import Tags from './Tags';
 
+import api from '../api'
+
 export default class MyTags extends React.Component {
 
     constructor(props) {
@@ -16,7 +18,7 @@ export default class MyTags extends React.Component {
     }
 
     loadTags = () => {
-         fetch('http://localhost:8080/api/tags')
+         fetch(api.endpoint + '/tags')
                 .then(response => response.json())
                 .then(data => this.setState({tags: data}));
     }

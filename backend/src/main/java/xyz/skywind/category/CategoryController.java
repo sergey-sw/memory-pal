@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.skywind.AppController;
 import xyz.skywind.dto.CategoryDTO;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class CategoryController {
     @Autowired
     private CategoryRepository repository;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping("/api/categories")
     public List<CategoryDTO> getCategories() {
         return repository.findAll().stream().map(CategoryDTO::new).collect(Collectors.toList());

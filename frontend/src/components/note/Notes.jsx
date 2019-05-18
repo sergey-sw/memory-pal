@@ -2,6 +2,8 @@ import * as React from 'react';
 import Note from './Note';
 import './notes.css';
 
+import api from '../api'
+
 export default class Notes extends React.Component {
 
   state = {
@@ -15,7 +17,7 @@ export default class Notes extends React.Component {
   }
 
   updateNotes = () => {
-       fetch('http://localhost:8080/api/notes')
+       fetch(api.endpoint + '/notes')
               .then(response => response.json())
               .then(data => this.setState({notes: data, isLoading: false}));
   }

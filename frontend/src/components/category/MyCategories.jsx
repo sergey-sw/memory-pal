@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import api from '../api'
+
 export default class MyCategories extends React.Component {
 
     constructor(props) {
@@ -14,7 +16,7 @@ export default class MyCategories extends React.Component {
     }
 
     loadCategories = () => {
-         fetch('http://localhost:8080/api/categories')
+         fetch(api.endpoint + '/categories')
                 .then(response => response.json())
                 .then(data => this.setState({categories: data}));
     }

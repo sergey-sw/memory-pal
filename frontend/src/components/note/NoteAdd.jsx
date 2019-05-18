@@ -5,6 +5,8 @@ import * as Showdown from "showdown";
 import TagEditor from '../tag/TagEditor';
 import './notes.css';
 
+import api from '../api'
+
 const DEFAULT_TITLE = 'My new note';
 
 export default class NoteAdd extends React.Component {
@@ -77,7 +79,7 @@ export default class NoteAdd extends React.Component {
 
         const editor = this;
 
-        axios.post('http://localhost:8080/api/notes/create', { text : md, title : title, tags : tags } )
+        axios.post(api.endpoint + '/notes/create', { text : md, title : title, tags : tags } )
               .then(res => {
                 this.props.onAfterSubmit();
               })

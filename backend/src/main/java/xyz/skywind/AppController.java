@@ -20,6 +20,8 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 @SpringBootApplication(scanBasePackages={"xyz.skywind"})
 public class AppController {
 
+    public static final String FRONT_DOMAIN = "http://http://localhost:3000";
+
     @RequestMapping("/")
     @ResponseBody
     String home() {
