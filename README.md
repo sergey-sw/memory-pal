@@ -1,23 +1,24 @@
 # memory-pal
 Learn, memorize and never forget
 
-<br/>
-<br/>
 
-Generate Intelij IDEA sources:
+How to build and run
+--
 
-    ./gradlew assemble ide
-    
-Import project -> Create from external model -> Gradle    
+**Using docker**
+
+    docker-compose up
+
+**Running services separately**
 
 
-<br/>
-<br/>
-Run frontend:
+**Frontend**: localhost:3000
 
     cd frontend
     yarn start
     
-Run backend
+**Backend**: localhost:8080
 
-    ./gradlew bootRun
+    cd backend
+    mvn package
+    java -jar target/backend.jar
