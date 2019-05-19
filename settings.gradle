@@ -1,5 +1,0 @@
-include(':backend')
-
-rootProject.name = 'memory-pal'
-
-project(':backend').projectDir = new File(settingsDir, 'backend')

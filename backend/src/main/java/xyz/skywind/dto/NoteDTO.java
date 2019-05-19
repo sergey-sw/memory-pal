@@ -1,10 +1,12 @@
 package xyz.skywind.dto;
 
+import xyz.skywind.category.Category;
 import xyz.skywind.note.Note;
 import xyz.skywind.tag.Tag;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +33,7 @@ public class NoteDTO {
         this.title = note.getTitle();
         this.text = note.getText();
         this.tags = note.getTags().stream().map(Tag::getName).collect(Collectors.toList());
-        this.category = note.getCategory().getName();
+        this.category = Optional.ofNullable(note.getCategory()).map(Category::getName).orElse("");
     }
 
     public long getId() {
